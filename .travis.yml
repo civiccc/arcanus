@@ -1,0 +1,17 @@
+language: ruby
+
+sudo: false
+
+cache: bundler
+
+rvm:
+  - 2.1
+  - 2.2
+
+before_script:
+  - git config --local user.email "travis@travis.ci"
+  - git config --local user.name "Travis CI"
+
+script:
+  - bundle exec overcommit --sign
+  - bundle exec overcommit --run
