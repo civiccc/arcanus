@@ -1,0 +1,20 @@
+# Run Overcommit within a Bundler context using this repo's Gemfile
+gemfile: Gemfile
+
+PreCommit:
+  ExecutePermissions:
+    enabled: true
+    exclude:
+      - 'bin/arcanus'
+
+  HardTabs:
+    enabled: true
+
+  RuboCop:
+    enabled: true
+
+  TrailingWhitespace:
+    enabled: true
+
+  YamlSyntax:
+    enabled: true

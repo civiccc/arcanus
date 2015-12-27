@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+require 'arcanus/cli'
+
+input = Arcanus::Input.new(STDIN)
+output = Arcanus::Output.new(STDOUT)
+exit Arcanus::CLI.new(input: input, output: output).run(ARGV)
