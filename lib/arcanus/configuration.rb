@@ -8,7 +8,7 @@ module Arcanus
   # this logic can be shared amongst the various components of the system.
   class Configuration
     # Name of the configuration file.
-    FILE_NAME = '.arcanus.yaml'
+    FILE_NAME = 'config.yaml'
 
     class << self
       # Loads appropriate configuration file given the current working
@@ -51,7 +51,7 @@ module Arcanus
       def applicable_config_file(directory)
         Pathname.new(directory)
                 .enum_for(:ascend)
-                .map { |dir| dir + FILE_NAME }
+                .map { |dir| dir + '.arcanus' + FILE_NAME }
                 .find do |config_file|
           config_file if config_file.exist?
         end

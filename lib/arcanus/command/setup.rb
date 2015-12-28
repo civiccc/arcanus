@@ -1,3 +1,5 @@
+require 'fileutils'
+
 module Arcanus::Command
   class Setup < Base
     description 'Create a chest to store encrypted secrets in the current repository'
@@ -9,16 +11,17 @@ module Arcanus::Command
       ui.info "Let's generate one for you."
       ui.newline
 
+      create_directory
       create_key
       create_chest
-      update_gitignore
+      create_gitignore
 
       ui.newline
       ui.success 'You can safely commit the following files:'
-      ui.info Arcanus::CHEST_FILE_NAME
-      ui.info Arcanus::LOCKED_KEY_NAME
+      ui.info Arcanus::CHEST_FILE_PATH
+      ui.info Arcanus::LOCKED_KEY_PATH
       ui.success 'You must never commit the unlocked key file:'
-      ui.info Arcanus::UNLOCKED_KEY_NAME
+      ui.info Arcanus::UNLOCKED_KEY_PATH
     end
 
     private
@@ -43,6 +46,10 @@ module Arcanus::Command
       end
 
       true
+    end
+
+    def create_directory
+      FileUtils.mkdir_p(repo.arcanus_dir)
     end
 
     def create_key
@@ -90,8 +97,10 @@ module Arcanus::Command
       File.open(repo.chest_file_path, 'w') { |f| f.write({}.to_yaml) }
     end
 
-    def update_gitignore
-      File.open(repo.gitignore_file_path, 'a') { |f| f.write(Arcanus::UNLOCKED_KEY_NAME) }
+    def create_gitignore
+      File.open(repo.gitignore_file_path, 'a') do |f|
+        f.write(File.basename(Arcanus::UNLOCKED_KEY_PATH))
+      end
     end
   end
 end

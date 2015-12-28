@@ -53,12 +53,16 @@ module Arcanus
         end
     end
 
+    def arcanus_dir
+      File.join(root, '.arcanus')
+    end
+
     def gitignore_file_path
-      File.join(root, '.gitignore')
+      File.join(arcanus_dir, '.gitignore')
     end
 
     def chest_file_path
-      File.join(root, CHEST_FILE_NAME)
+      File.join(root, CHEST_FILE_PATH)
     end
 
     def has_chest_file?
@@ -66,7 +70,7 @@ module Arcanus
     end
 
     def locked_key_path
-      File.join(root, LOCKED_KEY_NAME)
+      File.join(root, LOCKED_KEY_PATH)
     end
 
     def has_locked_key?
@@ -74,7 +78,7 @@ module Arcanus
     end
 
     def unlocked_key_path
-      File.join(root, UNLOCKED_KEY_NAME)
+      File.join(root, UNLOCKED_KEY_PATH)
     end
 
     def has_unlocked_key?
