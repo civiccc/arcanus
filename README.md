@@ -96,8 +96,8 @@ your local shell, but will not export those values so that they are passed to
 other programs invoked by your shell. Thus you could write a `bash` script
 like:
 
-**my-script.sh**
 ```bash
+# my-script.sh
 echo ${SOME_SECRET:-not-defined}
 ```
 
@@ -117,8 +117,8 @@ not-defined
 
 Similar to the default, but export the variables.
 
-**my-script.sh**
 ```bash
+# my-script.sh
 echo ${SOME_SECRET:-not-defined}
 ```
 
