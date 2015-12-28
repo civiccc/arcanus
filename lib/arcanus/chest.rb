@@ -16,12 +16,17 @@ module Arcanus
       @hash = Utils.deep_dup(@original_decrypted_hash)
     end
 
-    # Access the collection as if it were a hash.
+    # Access the chest as if it were a hash.
     #
     # @param key [String]
     # @return [Object]
     def [](key)
       @hash[key]
+    end
+
+    # Fetch key from the chest as if it were a hash.
+    def fetch(*args)
+      @hash.fetch(*args)
     end
 
     # Returns the contents of the chest as a hash.

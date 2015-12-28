@@ -15,8 +15,8 @@ module Arcanus
       # directory.
       #
       # @return [Arcanus::Configuration]
-      def load_applicable
-        current_directory = File.expand_path(Dir.pwd)
+      def load_applicable(working_directory = Dir.pwd)
+        current_directory = File.expand_path(working_directory)
         config_file = applicable_config_file(current_directory)
 
         if config_file
