@@ -1,7 +1,14 @@
 # Arcanus
 
 `arcanus` is Ruby-based tool to make working with encrypted secrets in your
-git repositories easier.
+git repositories easier, especially in a large team.
+
+It is inspired by [Chamber](https://github.com/thekompanee/chamber), which
+supports more integrations, but may be harder to get started with. `arcanus`
+tries to be simpler in what features it offers.
+
+If you're using `git` and Ruby and are looking for a way to store static (i.e.
+not frequently-changing) secrets, it's an excellent tool.
 
 * [Requirements](#requirements)
 * [Installation](#installation)
