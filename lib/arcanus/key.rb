@@ -25,7 +25,7 @@ module Arcanus
         new(key)
       rescue OpenSSL::PKey::RSAError
         raise Errors::DecryptionError,
-              'Either the password is invalid or the PEM file is invalid'
+              'Either the password is invalid or the key file is corrupted'
       end
     end
 

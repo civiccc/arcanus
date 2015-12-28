@@ -32,11 +32,11 @@ module Arcanus::Command
 
     def unlock_key
       loop do
-        ui.print 'Enter password:', newline: false
+        ui.print 'Enter password: ', newline: false
         password = ui.secret_user_input
 
         begin
-          key = Key.from_protected_file(repo.locked_key_path, password)
+          key = Arcanus::Key.from_protected_file(repo.locked_key_path, password)
           key.save(key_file_path: repo.unlocked_key_path)
           break # Key unlocked successfully
         rescue Arcanus::Errors::DecryptionError => ex
