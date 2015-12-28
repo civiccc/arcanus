@@ -12,7 +12,13 @@ module Arcanus::Command
       chest = Arcanus::Chest.new(key_file_path: repo.unlocked_key_path,
                                  chest_file_path: repo.chest_file_path)
 
-      output_colored_hash(chest.contents)
+      if arguments.size > 1
+        # Print specific key
+        ui.print chest.get(arguments[1])
+      else
+        # Print entire hash
+        output_colored_hash(chest.contents)
+      end
     end
 
     private

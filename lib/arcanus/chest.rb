@@ -29,6 +29,18 @@ module Arcanus
       @hash
     end
 
+    # Get value at the specified key path.
+    #
+    # @param key_path [String]
+    # @return [Object]
+    def get(key_path)
+      keys = key_path.split('.')
+      keys.inject(@hash) { |hash, key| hash[key] }
+    rescue NoMethodError
+      raise Arcanus::Errors::InvalidKeyPathError,
+            "Key path '#{key_path}' does not correspond to an actual key"
+    end
+
     def update(new_hash)
       @hash = new_hash
     end

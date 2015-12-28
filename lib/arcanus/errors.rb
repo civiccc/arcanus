@@ -29,4 +29,7 @@ module Arcanus::Errors
 
   # Raised when run in a directory not part of a valid git repository.
   class InvalidGitRepoError < UsageError; end
+
+  # Raised when a key path corresponding to a non-existent key is specified.
+  class InvalidKeyPathError < UsageError; end
 end
