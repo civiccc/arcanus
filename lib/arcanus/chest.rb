@@ -29,6 +29,19 @@ module Arcanus
       @hash
     end
 
+    # Set value for the specified key path.
+    #
+    # @param key_path [String]
+    # @param value [Object]
+    def set(key_path, value)
+      keys = key_path.split('.')
+      nested_hash = keys[0..-2].inject(@hash) { |hash, key| hash[key] }
+      nested_hash[keys[-1]] = value
+    rescue NoMethodError
+      raise Arcanus::Errors::InvalidKeyPathError,
+            "Key path '#{key_path}' does not correspond to an actual key"
+    end
+
     # Get value at the specified key path.
     #
     # @param key_path [String]
@@ -86,22 +99,14 @@ module Arcanus
     end
 
     def decrypt_hash(hash)
-      decrypted_hash = {}
-
-      hash.each do |key, value|
+      hash.each_with_object({}) do |(key, value), decrypted_hash|
         begin
-          if value.is_a?(Hash)
-            decrypted_hash[key] = decrypt_hash(value)
-          else
-            decrypted_hash[key] = decrypt_value(value)
-          end
+          decrypted_hash[key] = value.is_a?(Hash) ? decrypt_hash(value) : decrypt_value(value)
         rescue Errors::DecryptionError => ex
           raise Errors::DecryptionError,
                 "Problem decrypting value for key '#{key}': #{ex.message}"
         end
       end
-
-      decrypted_hash
     end
 
     def encrypt_value(value)

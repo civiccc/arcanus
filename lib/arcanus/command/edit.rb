@@ -18,10 +18,15 @@ module Arcanus::Command
       chest = Arcanus::Chest.new(key_file_path: repo.unlocked_key_path,
                                  chest_file_path: repo.chest_file_path)
 
-      ::Tempfile.new('arcanus-chest').tap do |file|
-        file.sync = true
-        file.write(chest.contents.to_yaml)
-        edit_until_done(chest, file.path)
+      if arguments.size > 1
+        edit_single_key(chest, arguments[1], arguments[2])
+      else
+        # Edit entire chest
+        ::Tempfile.new('arcanus-chest').tap do |file|
+          file.sync = true
+          file.write(chest.contents.to_yaml)
+          edit_until_done(chest, file.path)
+        end
       end
     end
 
@@ -29,6 +34,14 @@ module Arcanus::Command
 
     def editor_defined?
       !ENV['EDITOR'].strip.empty?
+    end
+
+    def edit_single_key(chest, key_path, new_value)
+      new_value = arguments[2]
+      old_value = chest.get(key_path)
+      chest.set(key_path, new_value)
+      chest.save
+      ui.success "Key '#{key_path}' updated from '#{old_value}' to '#{new_value}'"
     end
 
     def edit_until_done(chest, tempfile_path)
