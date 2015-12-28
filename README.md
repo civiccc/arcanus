@@ -6,6 +6,7 @@ git repositories easier.
 * [Requirements](#requirements)
 * [Installation](#installation)
 * [Usage](#usage)
+* [API](#api)
 * [License](#license)
 
 ## Requirements
@@ -172,6 +173,19 @@ their local key and not have to enter the password again.
 ### `version`
 
 Displays the Arcanus version.
+
+## API
+
+Arcanus exposes a simple API for retrieving your secrets in Ruby applications.
+
+Assuming Arcanus is already setup in your repository via
+`arcanus setup`/`arcanus unlock`, you can write something like:
+
+```ruby
+require 'arcanus'
+
+... = Arcanus.chest['my_secret']
+```
 
 ## License
 
