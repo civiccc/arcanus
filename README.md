@@ -1,5 +1,8 @@
 # Arcanus
 
+> [**arcānus**](https://en.wiktionary.org/wiki/arcanus): hidden, secret,
+> private, mysterious
+
 `arcanus` is Ruby-based tool to make working with encrypted secrets in your
 git repositories easier, especially in a large team.
 
