@@ -1,6 +1,6 @@
 # Arcanus Changelog
 
-## master (unreleased)
+## 0.2.0
 
 * Improve `show` command to display individual keys via optional key path
   argument
