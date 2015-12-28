@@ -26,5 +26,15 @@ module Arcanus
             .tr('-', '_')
             .downcase
     end
+
+    # Returns a deep copy of the specified hash.
+    #
+    # @param hash [Hash]
+    # @return [Hash]
+    def deep_dup(hash)
+      hash.each_with_object({}) do |(key, value), dup|
+        dup[key] = value.is_a?(Hash) ? deep_dup(value) : value
+      end
+    end
   end
 end

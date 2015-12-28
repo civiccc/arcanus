@@ -5,7 +5,7 @@ require 'yaml'
 
 module Arcanus
   # Encapsulates the collection of encrypted secrets managed by Arcanus.
-  class Chest
+  class Chest # rubocop:disable Metrics/ClassLength
     SIGNATURE_SIZE_BITS = 256
 
     def initialize(key_file_path:, chest_file_path:)
@@ -13,7 +13,7 @@ module Arcanus
       @chest_file_path = chest_file_path
       @original_encrypted_hash = YAML.load_file(chest_file_path).to_hash
       @original_decrypted_hash = decrypt_hash(@original_encrypted_hash)
-      @hash = @original_decrypted_hash.dup
+      @hash = Utils.deep_dup(@original_decrypted_hash)
     end
 
     # Access the collection as if it were a hash.
@@ -71,7 +71,7 @@ module Arcanus
 
     private
 
-    def process_hash_changes(original_encrypted, original_decrypted, current)
+    def process_hash_changes(original_encrypted, original_decrypted, current) # rubocop:disable Metrics/MethodLength, Metrics/LineLength
       result = {}
 
       current.keys.each do |key|
@@ -80,9 +80,14 @@ module Arcanus
         result[key] =
           if original_encrypted.key?(key)
             # Key still exists; check if modified.
-            if original_encrypted[key].is_a?(Hash) && value.is_a?(Hash)
-              process_hash_changes(original_encrypted[key], original_decrypted[key], current[key])
-            elsif value != original_decrypted[key]
+            if value.is_a?(Hash)
+              if original_encrypted[key].is_a?(Hash)
+                process_hash_changes(original_encrypted[key], original_decrypted[key], value)
+              else
+                # Key changed from single value to hash, so no previous has to compare against
+                process_hash_changes({}, {}, value)
+              end
+            elsif original_decrypted[key] != value
               # Value was changed; encrypt the new value
               encrypt_value(value)
             else
