@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Global application constants.
 module Arcanus
   EXECUTABLE_NAME = 'arcanus'.freeze
