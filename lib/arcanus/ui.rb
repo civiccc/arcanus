@@ -104,7 +104,7 @@ module Arcanus
     end
 
     # Execute a command with a spinner animation until it completes.
-    def spinner(*args, &block)
+    def spinner(*args)
       spinner = TTY::Spinner.new(*args)
       spinner_thread = Thread.new do
         loop do
@@ -113,7 +113,7 @@ module Arcanus
         end
       end
 
-      block.call
+      yield
     ensure
       spinner_thread.kill
       newline # Ensure next line of ouptut on separate line from spinner
@@ -123,9 +123,9 @@ module Arcanus
     #
     # Customize the table by passing a block and operating on the table object
     # passed to that block to add rows and customize its appearance.
-    def table(options = {}, &block)
+    def table(options = {})
       t = TTY::Table.new(options)
-      block.call(t)
+      yield t
       print(t.render(:unicode, options))
     end
   end

@@ -1,11 +1,11 @@
 # Global application constants.
 module Arcanus
-  EXECUTABLE_NAME = 'arcanus'
+  EXECUTABLE_NAME = 'arcanus'.freeze
 
-  CHEST_FILE_PATH = File.join('.arcanus', 'chest.yaml')
-  LOCKED_KEY_PATH = File.join('.arcanus', 'protected.key')
-  UNLOCKED_KEY_PATH = File.join('.arcanus', 'unprotected.key')
+  CHEST_FILE_PATH = File.join('.arcanus', 'chest.yaml').freeze
+  LOCKED_KEY_PATH = File.join('.arcanus', 'protected.key').freeze
+  UNLOCKED_KEY_PATH = File.join('.arcanus', 'unprotected.key').freeze
 
-  REPO_URL = 'https://github.com/sds/arcanus'
-  BUG_REPORT_URL = "#{REPO_URL}/issues"
+  REPO_URL = 'https://github.com/sds/arcanus'.freeze
+  BUG_REPORT_URL = "#{REPO_URL}/issues".freeze
 end

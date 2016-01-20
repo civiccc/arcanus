@@ -8,7 +8,7 @@ module Arcanus
   # this logic can be shared amongst the various components of the system.
   class Configuration
     # Name of the configuration file.
-    FILE_NAME = 'config.yaml'
+    FILE_NAME = 'config.yaml'.freeze
 
     class << self
       # Loads appropriate configuration file given the current working

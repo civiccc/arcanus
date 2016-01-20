@@ -1,3 +1,6 @@
+AllCops:
+  TargetRubyVersion: 2.1
+
 Lint/AmbiguousRegexpLiteral:
   Enabled: false
 
@@ -90,5 +93,8 @@ Style/MultilineOperationIndentation:
 Style/TrivialAccessors:
   Enabled: false
 
-Style/TrailingComma:
+Style/TrailingCommaInArguments:
+  Enabled: false
+
+Style/TrailingCommaInLiteral:
   Enabled: false

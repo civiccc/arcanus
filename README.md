@@ -24,7 +24,7 @@ not frequently-changing) secrets, it's an excellent tool.
 
 ## Requirements
 
-* Ruby 2.0.0+
+* Ruby 2.1+
 
 ## Installation
 

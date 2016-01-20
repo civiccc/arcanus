@@ -24,7 +24,7 @@ module Arcanus::Command
     def command_classes
       command_files =
         Dir[File.join(File.dirname(__FILE__), '*.rb')]
-          .select { |path| File.basename(path, '.rb') != 'base' }
+        .select { |path| File.basename(path, '.rb') != 'base' }
 
       command_files.map do |file|
         require file
