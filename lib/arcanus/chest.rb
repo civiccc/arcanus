@@ -34,6 +34,22 @@ module Arcanus
       @hash
     end
 
+    # Provides access to chest items using regular method calls instead of hash
+    # accesses.
+    def method_missing(method_sym, *)
+      method_name = method_sym.to_s
+      if @hash.key?(method_name)
+        value = @hash[method_name]
+        if value.is_a?(Hash)
+          Item.new(value, [method_name])
+        else
+          value
+        end
+      else
+        raise KeyError, "No key '#{method_name}' exists in this chest"
+      end
+    end
+
     # Set value for the specified key path.
     #
     # @param key_path [String]
@@ -159,6 +175,57 @@ module Arcanus
       end
 
       Marshal.load(dumped_value)
+    end
+
+    # Helper class for returning contents nested hashes, exposing helpers to
+    # access them via method calls.
+    class Item
+      def initialize(hash, prefix = [])
+        @hash = hash
+        @prefix = prefix
+      end
+
+      def method_missing(method_sym, *)
+        method_name = method_sym.to_s
+        if @hash.key?(method_name)
+          value = @hash[method_name]
+          if value.is_a?(Hash)
+            Item.new(value, @prefix + [method_name])
+          else
+            value
+          end
+        else
+          key_name = "#{@prefix.join('.')}.#{method_name}"
+          raise KeyError, "No key '#{key_name}' exists in this chest"
+        end
+      end
+
+      # Access the item as if it were a hash.
+      #
+      # @param key [String]
+      # @return [Object]
+      def [](key)
+        @hash[key]
+      end
+
+      # Fetch key from the chest as if it were a hash.
+      def fetch(*args)
+        @hash.fetch(*args)
+      end
+
+      def to_s
+        @hash.to_s
+      end
+
+      def inspect
+        @hash.inspect
+      end
+
+      # Implicit conversion to array. Needs to be defined so we can `puts` this
+      # value.
+      def to_ary
+        [@hash]
+      end
     end
   end
 end

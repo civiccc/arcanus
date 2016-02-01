@@ -1,5 +1,9 @@
 # Arcanus Changelog
 
+## master (unreleased)
+
+* Add support for accessing items in chest using method calls
+
 ## 0.2.0
 
 * Improve `show` command to display individual keys via optional key path
