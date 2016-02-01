@@ -46,7 +46,9 @@ module Arcanus
           value
         end
       else
-        raise KeyError, "No key '#{method_name}' exists in this chest"
+        raise KeyError,
+              "Key '#{method_name}' does not exist in this Arcanus chest",
+              caller
       end
     end
 
@@ -199,7 +201,9 @@ module Arcanus
           end
         else
           key_name = "#{@prefix.join('.')}.#{method_name}"
-          raise KeyError, "No key '#{key_name}' exists in this chest"
+          raise KeyError,
+                "Key '#{key_name}' does not exist in this Arcanus chest",
+                caller
         end
       end
 
