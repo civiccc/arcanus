@@ -94,7 +94,13 @@ module Arcanus::Command
     end
 
     def create_chest
+      # Create a dummy file to start so that we can initialize an empty chest,
+      # but then use that chest's #save implementation to save the file
       File.open(repo.chest_file_path, 'w') { |f| f.write({}.to_yaml) }
+
+      chest = Arcanus::Chest.new(key_file_path: repo.unlocked_key_path,
+                                 chest_file_path: repo.chest_file_path)
+      chest.save
     end
 
     def create_gitignore

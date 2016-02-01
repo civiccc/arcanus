@@ -3,6 +3,7 @@
 ## master (unreleased)
 
 * Add support for accessing items in chest using method calls
+* Include comment in `chest.yaml` warning user not to edit directly
 
 ## 0.2.0
 
