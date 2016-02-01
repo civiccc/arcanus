@@ -1,6 +1,6 @@
 # Arcanus Changelog
 
-## master (unreleased)
+## 0.3.0
 
 * Add support for accessing items in chest using method calls
 * Include comment in `chest.yaml` warning user not to edit directly
