@@ -197,7 +197,9 @@ Assuming Arcanus is already setup in your repository via
 ```ruby
 require 'arcanus'
 
-... = Arcanus.chest['my_secret']
+... = Arcanus.chest['some_key']['my_secret']
+# or...
+... = Arcanust.chest.some_key.my_secret
 ```
 
 ## License
