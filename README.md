@@ -198,8 +198,6 @@ Assuming Arcanus is already setup in your repository via
 require 'arcanus'
 
 ... = Arcanus.chest['some_key']['my_secret']
-# or...
-... = Arcanust.chest.some_key.my_secret
 ```
 
 ## CI

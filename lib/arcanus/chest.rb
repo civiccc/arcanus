@@ -21,7 +21,18 @@ module Arcanus
     # @param key [String]
     # @return [Object]
     def [](key)
-      @hash[key]
+      if @hash.key?(key)
+        value = @hash[key]
+        if value.is_a?(Hash)
+          Item.new(value, [key])
+        else
+          value
+        end
+      else
+        raise KeyError,
+              "Key '#{key}' does not exist in this Arcanus chest",
+              caller
+      end
     end
 
     # Fetch key from the chest as if it were a hash.
@@ -32,28 +43,6 @@ module Arcanus
     # Returns the contents of the chest as a hash.
     def contents
       @hash
-    end
-
-    # Provides access to chest items using regular method calls instead of hash
-    # accesses.
-    def method_missing(method_sym, *)
-      method_name = method_sym.to_s
-      if @hash.key?(method_name)
-        value = @hash[method_name]
-        if value.is_a?(Hash)
-          Item.new(value, [method_name])
-        else
-          value
-        end
-      else
-        raise KeyError,
-              "Key '#{method_name}' does not exist in this Arcanus chest",
-              caller
-      end
-    end
-
-    def respond_to?(method_sym, include_private = false)
-      @hash.key?(method_sym.to_s) || super
     end
 
     # Set value for the specified key path.
@@ -189,38 +178,31 @@ module Arcanus
     # Helper class for returning contents nested hashes, exposing helpers to
     # access them via method calls.
     class Item
-      def initialize(hash, prefix = [])
+      def initialize(hash, prefix)
         @hash = hash
         @prefix = prefix
       end
 
-      def method_missing(method_sym, *)
-        method_name = method_sym.to_s
-        if @hash.key?(method_name)
-          value = @hash[method_name]
-          if value.is_a?(Hash)
-            Item.new(value, @prefix + [method_name])
-          else
-            value
-          end
-        else
-          key_name = "#{@prefix.join('.')}.#{method_name}"
-          raise KeyError,
-                "Key '#{key_name}' does not exist in this Arcanus chest",
-                caller
-        end
-      end
-
-      def respond_to?(method_sym, include_private = false)
-        @hash.key?(method_sym.to_s) || super
-      end
-
       # Access the item as if it were a hash.
+      #
+      # This will raise an error if the key does not exist, however.
       #
       # @param key [String]
       # @return [Object]
       def [](key)
-        @hash[key]
+        if @hash.key?(key)
+          value = @hash[key]
+          if value.is_a?(Hash)
+            Item.new(value, @prefix + [key])
+          else
+            value
+          end
+        else
+          key_name = "#{@prefix.join('.')}.#{key}"
+          raise KeyError,
+                "Key '#{key_name}' does not exist in this Arcanus chest",
+                caller
+        end
       end
 
       # Fetch key from the chest as if it were a hash.

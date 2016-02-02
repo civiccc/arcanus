@@ -1,5 +1,9 @@
 # Arcanus Changelog
 
+## master (unreleased)
+
+* Remove ability to access chest keys via method calls
+
 ## 0.5.0
 
 * Fix bug where Arcanus API wouldn't work in repo with unlocked key
