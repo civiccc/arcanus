@@ -24,7 +24,7 @@ module Arcanus::Command
         # Edit entire chest
         ::Tempfile.new(['arcanus-chest', '.yaml']).tap do |file|
           file.sync = true
-          file.write(chest.contents.to_yaml)
+          file.write(chest.to_yaml)
           edit_until_done(chest, file.path)
         end
       end

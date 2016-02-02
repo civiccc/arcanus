@@ -14,7 +14,7 @@ module Arcanus::Command
       key = Arcanus::Key.from_file(repo.unlocked_key_path)
       chest = Arcanus::Chest.new(key: key, chest_file_path: repo.chest_file_path)
 
-      env_vars = extract_env_vars(chest.contents)
+      env_vars = extract_env_vars(chest.to_hash)
 
       output_lines =
         case arguments[1]

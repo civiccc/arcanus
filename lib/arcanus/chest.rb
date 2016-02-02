@@ -40,9 +40,14 @@ module Arcanus
       @hash.fetch(*args)
     end
 
-    # Returns the contents of the chest as a hash.
-    def contents
-      @hash
+    # Returns contents of the chest as a hash.
+    def to_hash
+      @hash.dup
+    end
+
+    # Returns contents of the chest as YAML.
+    def to_yaml
+      @hash.to_yaml
     end
 
     # Set value for the specified key path.
@@ -216,6 +221,10 @@ module Arcanus
 
       def inspect
         @hash.inspect
+      end
+
+      def to_hash
+        @hash.dup
       end
 
       # Implicit conversion to array. Needs to be defined so we can `puts` this

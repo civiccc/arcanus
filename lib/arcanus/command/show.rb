@@ -17,7 +17,7 @@ module Arcanus::Command
         ui.print chest.get(arguments[1])
       else
         # Print entire hash
-        output_colored_hash(chest.contents)
+        output_colored_hash(chest.to_hash)
       end
     end
 
