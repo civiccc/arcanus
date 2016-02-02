@@ -14,7 +14,12 @@ module Arcanus::Command
 
       if arguments.size > 1
         # Print specific key
-        ui.print chest.get(arguments[1])
+        value = chest.get(arguments[1])
+        if value.is_a?(Hash)
+          output_colored_hash(value)
+        else
+          ui.print value
+        end
       else
         # Print entire hash
         output_colored_hash(chest.to_hash)

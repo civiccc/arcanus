@@ -1,5 +1,9 @@
 # Arcanus Changelog
 
+## master (unreleased)
+
+* Pretty print hash in show command if key is a nested hash
+
 ## 0.8.0
 
 * Add back ability to access chest keys via method calls
