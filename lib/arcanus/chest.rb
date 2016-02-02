@@ -52,6 +52,10 @@ module Arcanus
       end
     end
 
+    def respond_to?(method_sym, include_private = false)
+      @hash.key?(method_sym.to_s) || super
+    end
+
     # Set value for the specified key path.
     #
     # @param key_path [String]
@@ -205,6 +209,10 @@ module Arcanus
                 "Key '#{key_name}' does not exist in this Arcanus chest",
                 caller
         end
+      end
+
+      def respond_to?(method_sym, include_private = false)
+        @hash.key?(method_sym.to_s) || super
       end
 
       # Access the item as if it were a hash.

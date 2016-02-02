@@ -3,6 +3,7 @@
 ## master (unreleased)
 
 * Fix bug where Arcanus API wouldn't work in repo with unlocked key
+* Define `respond_to?` methods for `Chest`/`Chest::Item` classes
 
 ## 0.4.0
 
