@@ -5,6 +5,7 @@
 * Ensure temporary file edited during `arcanus edit` ends with `.yaml` so
   editor chooses correct syntax highlighter
 * Fix password setting to not include trailing newline
+* Allow key to be unlocked via environment variable in API
 
 ## 0.3.0
 

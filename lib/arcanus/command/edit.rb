@@ -15,8 +15,8 @@ module Arcanus::Command
               '$EDITOR environment variable is not defined'
       end
 
-      chest = Arcanus::Chest.new(key_file_path: repo.unlocked_key_path,
-                                 chest_file_path: repo.chest_file_path)
+      key = Arcanus::Key.from_file(repo.unlocked_key_path)
+      chest = Arcanus::Chest.new(key: key, chest_file_path: repo.chest_file_path)
 
       if arguments.size > 1
         edit_single_key(chest, arguments[1], arguments[2])

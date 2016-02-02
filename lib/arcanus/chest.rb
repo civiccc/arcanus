@@ -8,8 +8,8 @@ module Arcanus
   class Chest # rubocop:disable Metrics/ClassLength
     SIGNATURE_SIZE_BITS = 256
 
-    def initialize(key_file_path:, chest_file_path:)
-      @key = Key.from_file(key_file_path)
+    def initialize(key:, chest_file_path:)
+      @key = key
       @chest_file_path = chest_file_path
       @original_encrypted_hash = YAML.load_file(chest_file_path).to_hash
       @original_decrypted_hash = decrypt_hash(@original_encrypted_hash)

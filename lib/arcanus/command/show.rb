@@ -9,8 +9,8 @@ module Arcanus::Command
     def execute
       ensure_key_unlocked
 
-      chest = Arcanus::Chest.new(key_file_path: repo.unlocked_key_path,
-                                 chest_file_path: repo.chest_file_path)
+      key = Arcanus::Key.from_file(repo.unlocked_key_path)
+      chest = Arcanus::Chest.new(key: key, chest_file_path: repo.chest_file_path)
 
       if arguments.size > 1
         # Print specific key

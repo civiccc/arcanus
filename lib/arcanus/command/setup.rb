@@ -98,8 +98,8 @@ module Arcanus::Command
       # but then use that chest's #save implementation to save the file
       File.open(repo.chest_file_path, 'w') { |f| f.write({}.to_yaml) }
 
-      chest = Arcanus::Chest.new(key_file_path: repo.unlocked_key_path,
-                                 chest_file_path: repo.chest_file_path)
+      key = Arcanus::Key.from_file(repo.unlocked_key_path)
+      chest = Arcanus::Chest.new(key: key, chest_file_path: repo.chest_file_path)
       chest.save
     end
 

@@ -202,6 +202,12 @@ require 'arcanus'
 ... = Arcanust.chest.some_key.my_secret
 ```
 
+## CI
+
+When running tests in a CI environment on a repo protected by Arcanus, you can
+specify your password via the `ARCANUS_PASSWORD` environment variable. Arcanus
+will unlock the protected key but will not save the unprotected key file.
+
 ## License
 
 This project is released under the [MIT license](LICENSE.md).
