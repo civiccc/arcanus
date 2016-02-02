@@ -1,6 +1,6 @@
 # Arcanus Changelog
 
-## master (unreleased)
+## 0.7.0
 
 * Add `to_hash` and `to_yaml` methods to `Arcanus::Chest`
 
