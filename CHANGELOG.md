@@ -1,6 +1,6 @@
 # Arcanus Changelog
 
-## master (unreleased)
+## 0.8.0
 
 * Add back ability to access chest keys via method calls
 
