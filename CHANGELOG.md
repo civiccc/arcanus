@@ -4,6 +4,7 @@
 
 * Pretty print hash in show command if key is a nested hash
 * Don't delete `ARCANUS_PASSWORD` environment variable after unlocking key
+* Add `diff` command to show what was changed in the chest
 
 ## 0.8.0
 

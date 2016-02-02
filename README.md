@@ -61,6 +61,7 @@ The wizard will guide you through the unlock process.
 All commands are of the form `arcanus command`, where `command` is from the list
 below. Help documentation will be shown if no command is provided.
 
+* [diff](#diff-ref)
 * [edit](#edit-key-path-value)
 * [export](#export---type)
 * [help](#help)
@@ -68,6 +69,15 @@ below. Help documentation will be shown if no command is provided.
 * [show](#show-key-path)
 * [unlock](#unlock)
 * [version](#version)
+
+### `diff [ref]`
+
+Shows a patch diff of what has changed between the current chest and a
+revision (by default, `HEAD`). Assume you are using `git` for source control.
+
+This is useful because while the file on disk will have encrypted blobs, this
+will show the diff of decrypted values, making it easier to verify your
+changes.
 
 ### `edit [key-path] [value]`
 
