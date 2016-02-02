@@ -41,7 +41,6 @@ module Arcanus
       key = Arcanus::Key.from_file(@repo.unlocked_key_path)
     elsif ENV['ARCANUS_PASSWORD']
       key = Arcanus::Key.from_protected_file(@repo.locked_key_path, ENV['ARCANUS_PASSWORD'])
-      ENV.delete('ARCANUS_PASSWORD') # Scrub so child processes don't inherit
     else
       raise Errors::UsageError,
             'Arcanus key has not been unlocked. ' \

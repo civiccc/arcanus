@@ -3,6 +3,7 @@
 ## master (unreleased)
 
 * Pretty print hash in show command if key is a nested hash
+* Don't delete `ARCANUS_PASSWORD` environment variable after unlocking key
 
 ## 0.8.0
 
