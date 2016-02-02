@@ -36,7 +36,9 @@ module Arcanus
     #
     # @return [String, nil]
     def secret_user_input
-      @input.get(noecho: true)
+      if input = @input.get(noecho: true)
+        input.chomp # Remove trailing newline as it is not part of password
+      end
     rescue Interrupt
       exit 130 # User cancelled
     end
