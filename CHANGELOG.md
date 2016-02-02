@@ -1,6 +1,6 @@
 # Arcanus Changelog
 
-## master (unreleased)
+## 0.5.0
 
 * Fix bug where Arcanus API wouldn't work in repo with unlocked key
 * Define `respond_to?` methods for `Chest`/`Chest::Item` classes
