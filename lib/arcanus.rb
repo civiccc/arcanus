@@ -38,7 +38,7 @@ module Arcanus
     end
 
     if File.exist?(@repo.unlocked_key_path)
-      key = Arcanus::Key.from_file(@repo.locked_key_path)
+      key = Arcanus::Key.from_file(@repo.unlocked_key_path)
     elsif ENV['ARCANUS_PASSWORD']
       key = Arcanus::Key.from_protected_file(@repo.locked_key_path, ENV['ARCANUS_PASSWORD'])
       ENV.delete('ARCANUS_PASSWORD') # Scrub so child processes don't inherit
@@ -49,10 +49,5 @@ module Arcanus
     end
 
     @chest = Chest.new(key: key, chest_file_path: @repo.chest_file_path)
-  end
-
-  def unlock(password)
-    key = Arcanus::Key.from_protected_file(@repo.locked_key_path, password)
-    key.save(key_file_path: @repo.unlocked_key_path)
   end
 end

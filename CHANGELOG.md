@@ -1,5 +1,9 @@
 # Arcanus Changelog
 
+## master (unreleased)
+
+* Fix bug where Arcanus API wouldn't work in repo with unlocked key
+
 ## 0.4.0
 
 * Ensure temporary file edited during `arcanus edit` ends with `.yaml` so
