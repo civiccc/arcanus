@@ -22,7 +22,7 @@ module Arcanus::Command
         edit_single_key(chest, arguments[1], arguments[2])
       else
         # Edit entire chest
-        ::Tempfile.new('arcanus-chest').tap do |file|
+        ::Tempfile.new(['arcanus-chest', '.yaml']).tap do |file|
           file.sync = true
           file.write(chest.contents.to_yaml)
           edit_until_done(chest, file.path)

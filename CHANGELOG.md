@@ -1,5 +1,10 @@
 # Arcanus Changelog
 
+## master (unreleased)
+
+* Ensure temporary file edited during `arcanus edit` ends with `.yaml` so
+  editor chooses correct syntax highlighter
+
 ## 0.3.0
 
 * Add support for accessing items in chest using method calls
