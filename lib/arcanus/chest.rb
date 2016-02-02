@@ -35,6 +35,19 @@ module Arcanus
       end
     end
 
+    def method_missing(method_sym, *args)
+      method_name = method_sym.to_s
+      if @hash.key?(method_name)
+        self[method_name]
+      else
+        super
+      end
+    end
+
+    def respond_to?(method_sym, *)
+      @hash.key?(method_sym.to_s) || super
+    end
+
     # Fetch key from the chest as if it were a hash.
     def fetch(*args)
       @hash.fetch(*args)
@@ -208,6 +221,19 @@ module Arcanus
                 "Key '#{key_name}' does not exist in this Arcanus chest",
                 caller
         end
+      end
+
+      def method_missing(method_sym, *args)
+        method_name = method_sym.to_s
+        if @hash.key?(method_name)
+          self[method_name]
+        else
+          super
+        end
+      end
+
+      def respond_to?(method_sym, *)
+        @hash.key?(method_sym.to_s) || super
       end
 
       # Fetch key from the chest as if it were a hash.

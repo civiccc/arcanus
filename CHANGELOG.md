@@ -1,5 +1,9 @@
 # Arcanus Changelog
 
+## master (unreleased)
+
+* Add back ability to access chest keys via method calls
+
 ## 0.7.0
 
 * Add `to_hash` and `to_yaml` methods to `Arcanus::Chest`
