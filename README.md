@@ -20,6 +20,7 @@ not frequently-changing) secrets, it's an excellent tool.
 * [Installation](#installation)
 * [Usage](#usage)
 * [API](#api)
+* [CI](#ci)
 * [License](#license)
 
 ## Requirements
