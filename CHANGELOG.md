@@ -1,6 +1,6 @@
 # Arcanus Changelog
 
-## master (unreleased)
+## 0.9.0
 
 * Pretty print hash in show command if key is a nested hash
 * Don't delete `ARCANUS_PASSWORD` environment variable after unlocking key
