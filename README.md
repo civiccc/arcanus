@@ -72,8 +72,8 @@ below. Help documentation will be shown if no command is provided.
 
 ### `diff [ref]`
 
-Shows a patch diff of what has changed between the current chest and a
-revision (by default, `HEAD`). Assume you are using `git` for source control.
+Shows a patch diff of what has changed between the current chest and a revision
+(by default, `HEAD`). Assumes you are using `git` for source control.
 
 This is useful because while the file on disk will have encrypted blobs, this
 will show the diff of decrypted values, making it easier to verify your
