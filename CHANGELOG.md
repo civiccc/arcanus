@@ -1,6 +1,6 @@
 # Arcanus Changelog
 
-## master (unreleased)
+## 0.10.0
 
 * Don't require `.git` directory to exist
 
