@@ -20,7 +20,10 @@ module Arcanus
           arc_dir = Pathname.new(File.expand_path('.'))
                             .enum_for(:ascend)
                             .find do |path|
-            (path + '.arcanus').exist?
+            # We check for .arcanus first since most repos will have that but
+            # not necessarily have .git. However, when running `arcanus setup`,
+            # the .arcanus directory won't exist yet, so check for .git
+            (path + '.arcanus').exist? || (path + '.git').exist?
           end
 
           unless arc_dir

@@ -1,5 +1,9 @@
 # Arcanus Changelog
 
+## master (unreleased)
+
+* Fix regression in `arcanus setup` so it works in a new repo
+
 ## 0.10.0
 
 * Don't require `.git` directory to exist
