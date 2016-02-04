@@ -1,6 +1,6 @@
 # Arcanus Changelog
 
-## master (unreleased)
+## 0.10.1
 
 * Fix regression in `arcanus setup` so it works in a new repo
 
