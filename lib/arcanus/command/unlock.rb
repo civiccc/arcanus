@@ -34,6 +34,7 @@ module Arcanus::Command
       loop do
         ui.print 'Enter password: ', newline: false
         password = ui.secret_user_input
+        ui.newline
 
         begin
           key = Arcanus::Key.from_protected_file(repo.locked_key_path, password)
