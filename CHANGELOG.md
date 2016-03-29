@@ -1,5 +1,10 @@
 # Arcanus Changelog
 
+## master (unreleased)
+
+* Update minimum Ruby version to 2.1 (due to methods with required keyword
+  arguments)
+
 ## 0.10.1
 
 * Fix regression in `arcanus setup` so it works in a new repo
