@@ -1,6 +1,6 @@
 # Arcanus Changelog
 
-## master (unreleased)
+## 0.11.0
 
 * Update minimum Ruby version to 2.1 (due to methods with required keyword
   arguments)
