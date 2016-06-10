@@ -6,6 +6,8 @@
   arguments)
 * Fix `arcanus edit` to report error if `EDITOR` environment variable is not
   defined instead of crashing
+* Fix `arcanus unlock` to report better error message if running in a
+  repository that does not contain a chest
 
 ## 0.10.1
 

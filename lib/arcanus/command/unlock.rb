@@ -3,6 +3,7 @@ module Arcanus::Command
     description 'Unlocks key so secrets can be encrypted/decrypted'
 
     def execute
+      return unless has_chest?
       return if already_unlocked?
 
       ui.print "This repository's Arcanus key is locked by a password."
@@ -19,6 +20,16 @@ module Arcanus::Command
     end
 
     private
+
+    def has_chest?
+      return true if repo.has_chest_file?
+
+      ui.error 'This repository does not have an Arcanus chest.'
+      ui.print 'Create one by running:'
+      ui.info 'arcanus setup'
+
+      false
+    end
 
     def already_unlocked?
       return unless repo.has_unlocked_key?
