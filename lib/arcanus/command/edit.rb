@@ -33,7 +33,7 @@ module Arcanus::Command
     private
 
     def editor_defined?
-      !ENV['EDITOR'].strip.empty?
+      !ENV['EDITOR'].to_s.strip.empty?
     end
 
     def edit_single_key(chest, key_path, new_value)

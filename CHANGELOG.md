@@ -4,6 +4,8 @@
 
 * Update minimum Ruby version to 2.1 (due to methods with required keyword
   arguments)
+* Fix `arcanus edit` to report error if `EDITOR` environment variable is not
+  defined instead of crashing
 
 ## 0.10.1
 
