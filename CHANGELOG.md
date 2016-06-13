@@ -1,6 +1,6 @@
 # Arcanus Changelog
 
-## master (unreleased)
+## 0.12.0
 
 * Respect ARCANUS_PASSWORD environment variable when running arcanus commands
   from the command line
