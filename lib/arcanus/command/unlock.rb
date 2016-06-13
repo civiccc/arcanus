@@ -6,9 +6,6 @@ module Arcanus::Command
       return unless has_chest?
       return if already_unlocked?
 
-      ui.print "This repository's Arcanus key is locked by a password."
-      ui.print "Until you unlock it, you won't be able to view/edit secrets."
-
       unlock_key
 
       ui.success "Key unlocked and saved in #{repo.unlocked_key_path}"
@@ -42,6 +39,17 @@ module Arcanus::Command
     end
 
     def unlock_key
+      if ENV.key?('ARCANUS_PASSWORD')
+        unlock_key_via_env
+      else
+        unlock_key_interactive
+      end
+    end
+
+    def unlock_key_interactive
+      ui.print "This repository's Arcanus key is locked by a password."
+      ui.print "Until you unlock it, you won't be able to view/edit secrets."
+
       loop do
         ui.print 'Enter password: ', newline: false
         password = ui.secret_user_input
@@ -54,6 +62,18 @@ module Arcanus::Command
         rescue Arcanus::Errors::DecryptionError => ex
           ui.error ex.message
         end
+      end
+    end
+
+    def unlock_key_via_env
+      ui.print 'ARCANUS_PASSWORD environment variable detected. Attempting to unlock chest...'
+      begin
+        key = Arcanus::Key.from_protected_file(repo.locked_key_path, ENV['ARCANUS_PASSWORD'])
+        key.save(key_file_path: repo.unlocked_key_path)
+        ui.success 'Chest unlocked!'
+      rescue Arcanus::Errors::DecryptionError => ex
+        ui.error 'Unable to unlock key using the ARCANUS_PASSWORD environment variable provided!'
+        ui.error ex.message
       end
     end
   end

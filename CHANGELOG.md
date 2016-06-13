@@ -1,5 +1,10 @@
 # Arcanus Changelog
 
+## master (unreleased)
+
+* Respect ARCANUS_PASSWORD environment variable when running arcanus commands
+  from the command line
+
 ## 0.11.0
 
 * Update minimum Ruby version to 2.1 (due to methods with required keyword
