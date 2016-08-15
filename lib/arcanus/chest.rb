@@ -44,6 +44,10 @@ module Arcanus
       end
     end
 
+    def respond_to_missing?(method_name, *args)
+      @hash.key?(method_name.to_s) ? true : super
+    end
+
     def respond_to?(method_sym, *)
       @hash.key?(method_sym.to_s) || super
     end
@@ -230,6 +234,10 @@ module Arcanus
         else
           super
         end
+      end
+
+      def respond_to_missing?(method_name, *args)
+        @hash.key?(method_name.to_s) ? true : super
       end
 
       def respond_to?(method_sym, *)

@@ -90,6 +90,9 @@ Style/SpecialGlobalVars:
 Style/MultilineOperationIndentation:
   Enabled: false
 
+Style/NumericPredicate:
+  Enabled: false
+
 Style/TrivialAccessors:
   Enabled: false
 
