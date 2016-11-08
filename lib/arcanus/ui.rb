@@ -15,7 +15,7 @@ module Arcanus
     def initialize(input, output)
       @input = input
       @output = output
-      @pastel = Pastel.new
+      @pastel = Pastel.new(enabled: output.tty?)
       @shell = TTY::Shell.new
     end
 

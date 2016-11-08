@@ -21,5 +21,12 @@ module Arcanus
     def print(output)
       @output_stream.print(output)
     end
+
+    # Return if output is a TTY console.
+    #
+    # @return [true,false]
+    def tty?
+      @output_stream.tty?
+    end
   end
 end

@@ -1,5 +1,9 @@
 # Arcanus Changelog
 
+## master (unreleased)
+
+* Output color escape sequences only when outputting to a TTY console
+
 ## 0.12.0
 
 * Respect ARCANUS_PASSWORD environment variable when running arcanus commands
