@@ -1,6 +1,6 @@
 # Arcanus Changelog
 
-## master (unreleased)
+## 0.12.1
 
 * Output color escape sequences only when outputting to a TTY console
 
