@@ -8,12 +8,11 @@ module Arcanus::Command
     class << self
       # Create a command from a list of arguments.
       #
-      # @param config [Arcanus::Configuration]
       # @param ui [Arcanus::UI]
       # @param arguments [Array<String>]
       # @return [Arcanus::Command::Base] appropriate command for the given
       #   arguments
-      def from_arguments(config, ui, arguments)
+      def from_arguments(ui, arguments)
         cmd = arguments.first
 
         begin
@@ -23,7 +22,7 @@ module Arcanus::Command
                 "`arcanus #{cmd}` is not a valid command"
         end
 
-        Arcanus::Command.const_get(Arcanus::Utils.camel_case(cmd)).new(config, ui, arguments)
+        Arcanus::Command.const_get(Arcanus::Utils.camel_case(cmd)).new(ui, arguments)
       end
 
       def description(desc = nil)
@@ -36,11 +35,9 @@ module Arcanus::Command
       end
     end
 
-    # @param config [Arcanus::Configuration]
     # @param ui [Arcanus::UI]
     # @param arguments [Array<String>]
-    def initialize(config, ui, arguments)
-      @config = config
+    def initialize(ui, arguments)
       @ui = ui
       @arguments = arguments
     end
@@ -61,16 +58,13 @@ module Arcanus::Command
     #
     # @param command_arguments [Array<String>]
     def execute_command(command_arguments)
-      self.class.from_arguments(config, ui, command_arguments).execute
+      self.class.from_arguments(ui, command_arguments).execute
     end
 
     private
 
     # @return [Array<String>]
     attr_reader :arguments
-
-    # @return [Arcanus::Configuration]
-    attr_reader :config
 
     # @return [Arcanus::UI]
     attr_reader :ui
@@ -79,7 +73,7 @@ module Arcanus::Command
     #
     # @return [Arcanus::Repo]
     def repo
-      @repo ||= Arcanus::Repo.new(@config)
+      @repo ||= Arcanus::Repo.new
     end
 
     # Execute a process and return the result including status and output.

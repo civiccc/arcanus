@@ -1,5 +1,10 @@
 # Arcanus Changelog
 
+## master (unreleased)
+
+* Remove internal `Configuration` class, as it was never used
+  (results in no user-facing changes)
+
 ## 0.12.1
 
 * Output color escape sequences only when outputting to a TTY console

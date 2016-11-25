@@ -1,7 +1,6 @@
 require 'arcanus/constants'
 require 'arcanus/errors'
 require 'arcanus/error_handler'
-require 'arcanus/configuration'
 require 'arcanus/input'
 require 'arcanus/output'
 require 'arcanus/ui'
@@ -27,9 +26,8 @@ module Arcanus
   # Loads Arcanus chest and decrypts secrets.
   #
   # @param directory [String] repo directory
-  def load(directory = Dir.pwd)
-    @config = Configuration.load_applicable(directory)
-    @repo = Repo.new(@config)
+  def load
+    @repo = Repo.new
 
     unless File.directory?(@repo.arcanus_dir)
       raise Errors::UsageError,

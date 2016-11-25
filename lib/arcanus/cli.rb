@@ -28,8 +28,7 @@ module Arcanus
     # @param [Array<String>] arguments
     # @return [Integer] exit status code
     def run(arguments)
-      config = Configuration.load_applicable
-      run_command(config, arguments)
+      run_command(arguments)
 
       ExitCodes::OK
     rescue => ex
@@ -40,15 +39,14 @@ module Arcanus
 
     # Executes the appropriate command given the list of command line arguments.
     #
-    # @param config [Arcanus::Configuration]
     # @param ui [Arcanus::UI]
     # @param arguments [Array<String>]
     # @raise [Arcanus::Errors::ArcanusError] when any exceptional circumstance occurs
-    def run_command(config, arguments)
+    def run_command(arguments)
       arguments = convert_arguments(arguments)
 
       require 'arcanus/command/base'
-      Command::Base.from_arguments(config, @ui, arguments).run
+      Command::Base.from_arguments(@ui, arguments).run
     end
 
     def convert_arguments(arguments)

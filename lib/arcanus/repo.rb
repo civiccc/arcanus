@@ -3,11 +3,6 @@ require 'pathname'
 module Arcanus
   # Exposes information about the current git repository.
   class Repo
-    # @param config [Arcanus::Configuration]
-    def initialize(config)
-      @config = config
-    end
-
     # Returns the absolute path to the root of the current repository the
     # current working directory resides within.
     #
