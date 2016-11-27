@@ -4,7 +4,7 @@ module Arcanus
   # Encapsulates operations for creating keys that encrypt/decrypt secrets.
   class Key
     DEFAULT_SIZE = 4096
-    PASSWORD_CIPHER = OpenSSL::Cipher.new('AES-256-CBC')
+    PEM_PASSWORD_CIPHER = OpenSSL::Cipher.new('AES-256-CBC')
 
     class << self
       def generate(key_size_bits: DEFAULT_SIZE)
@@ -36,7 +36,7 @@ module Arcanus
     def save(key_file_path:, password: nil)
       pem =
         if password
-          @key.to_pem(PASSWORD_CIPHER, password)
+          @key.to_pem(PEM_PASSWORD_CIPHER, password)
         else
           @key.to_pem
         end

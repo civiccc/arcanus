@@ -7,6 +7,7 @@ module Arcanus
   # Encapsulates the collection of encrypted secrets managed by Arcanus.
   class Chest # rubocop:disable Metrics/ClassLength
     SIGNATURE_SIZE_BITS = 256
+    ENCRYPTION_CIPHER = OpenSSL::Cipher.new('AES-256-CBC')
 
     def initialize(key:, chest_file_path:)
       @key = key
@@ -157,7 +158,14 @@ module Arcanus
 
     def encrypt_value(value)
       dumped_value = Marshal.dump(value)
-      encrypted_value = Base64.encode64(@key.encrypt(dumped_value))
+
+      # Create a random symmetric key so we can encrypt plaintext of arbitrary length
+      sym_key = ENCRYPTION_CIPHER.reset.encrypt.random_key
+      iv = Base64.encode64(ENCRYPTION_CIPHER.random_iv)
+      enc_sym_key = Base64.encode64(@key.encrypt(sym_key))
+      encrypted_value = Base64.encode64(ENCRYPTION_CIPHER.update(dumped_value) +
+                                        ENCRYPTION_CIPHER.final)
+
       salt = SecureRandom.hex(8)
 
       signature = Digest::SHA2.new(SIGNATURE_SIZE_BITS).tap do |digest|
@@ -165,23 +173,31 @@ module Arcanus
         digest << dumped_value
       end.to_s
 
-      "#{encrypted_value}:#{salt}:#{signature}"
+      "#{iv}:#{enc_sym_key}:#{encrypted_value}:#{salt}:#{signature}"
     end
 
-    def decrypt_value(blob)
+    def decrypt_value(blob) # rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength
       unless blob.is_a?(String)
         raise Errors::DecryptionError,
               "Expecting an encrypted blob but got '#{blob}'"
       end
 
-      encrypted_value, salt, signature = blob.split(':')
+      iv_b64, enc_sym_key_b64, encrypted_value_b64, salt, signature = blob.split(':')
 
-      if signature.nil? || salt.nil? || encrypted_value.nil?
+      if signature.nil? || salt.nil? || encrypted_value_b64.nil? ||
+         enc_sym_key_b64.nil? || iv_b64.nil?
         raise Errors::DecryptionError,
-              "Invalid blob format '#{blob}' (must be of the form 'signature:salt:ciphertext')"
+              "Invalid blob format '#{blob}'. " \
+              'Did you encrypt this with an older version of Arcanus?'
       end
 
-      dumped_value = @key.decrypt(Base64.decode64(encrypted_value))
+      iv = Base64.decode64(iv_b64)
+      sym_key = @key.decrypt(Base64.decode64(enc_sym_key_b64))
+      ENCRYPTION_CIPHER.reset.decrypt
+      ENCRYPTION_CIPHER.iv = iv
+      ENCRYPTION_CIPHER.key = sym_key
+      dumped_value = ENCRYPTION_CIPHER.update(Base64.decode64(encrypted_value_b64)) +
+        ENCRYPTION_CIPHER.final
 
       actual_signature = Digest::SHA2.new(SIGNATURE_SIZE_BITS).tap do |digest|
         digest << salt

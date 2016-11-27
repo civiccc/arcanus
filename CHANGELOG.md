@@ -2,6 +2,12 @@
 
 ## master (unreleased)
 
+* **BREAKING CHANGE**: The format of the chest file has been changed
+  to support encryption of arbitrarily-long values (previously there
+  was a limit due to the algorithm used). To update to the new format,
+  run `arcanus show` to get the decrypted chest YAML
+  Edit `.arcanus/chest.yaml` and change its contents to `--- {}`. Finally
+  run `arcanus edit` and paste the YAML file you previously exported.
 * Remove internal `Configuration` class, as it was never used
   (results in no user-facing changes)
 
