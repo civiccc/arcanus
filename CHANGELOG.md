@@ -1,6 +1,6 @@
 # Arcanus Changelog
 
-## master (unreleased)
+## 1.0.0
 
 * **BREAKING CHANGE**: The format of the chest file has been changed
   to support encryption of arbitrarily-long values (previously there

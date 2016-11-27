@@ -2,5 +2,5 @@
 
 # Defines the gem version.
 module Arcanus
-  VERSION = '0.12.1'.freeze
+  VERSION = '1.0.0'.freeze
 end
