@@ -1,6 +1,6 @@
 # Arcanus Changelog
 
-## 1.0.1 (unreleased)
+## 1.0.1
 
 * Update `childprocess` to v0.6.3
 

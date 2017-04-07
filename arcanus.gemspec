@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.license          = 'MIT'
   s.summary          = 'Arcanus command line interface'
   s.description      = 'Tool for working with encrypted secrets in repositories'
-  s.authors          = ['Shane da Silva']
-  s.email            = ['shane@dasilva.io']
+  s.authors          = ['Brigade Engineering', 'Shane da Silva']
+  s.email            = ['eng@brigade.com', 'shane.dasilva@brigade.com']
   s.homepage         = Arcanus::REPO_URL
 
   s.require_paths    = ['lib']
