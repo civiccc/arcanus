@@ -1,6 +1,6 @@
 # Arcanus Changelog
 
-## master (unreleased)
+## 1.1.0
 
 * Remove unused `childprocess` dependency
 
