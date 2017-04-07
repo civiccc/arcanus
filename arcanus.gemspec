@@ -20,7 +20,6 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = '>= 2.1'
 
-  s.add_dependency 'childprocess', '~> 0.6.3'
   s.add_dependency 'diffy', '~> 3.1'
   s.add_dependency 'tty', '~> 0.2.0'
 end
