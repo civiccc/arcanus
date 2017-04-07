@@ -1,5 +1,9 @@
 # Arcanus Changelog
 
+## 1.0.1 (unreleased)
+
+* Update `childprocess` to v0.6.3
+
 ## 1.0.0
 
 * **BREAKING CHANGE**: The format of the chest file has been changed

@@ -1,7 +1,7 @@
 # Arcanus
 
 [![Gem Version](https://badge.fury.io/rb/arcanus.svg)](http://badge.fury.io/rb/arcanus)
-[![Build Status](https://travis-ci.org/sds/arcanus.svg?branch=master)](https://travis-ci.org/sds/arcanus)
+[![Build Status](https://travis-ci.org/brigade/arcanus.svg?branch=master)](https://travis-ci.org/brigade/arcanus)
 
 > [**arcānus**](https://en.wiktionary.org/wiki/arcanus): hidden, secret,
 > private, mysterious

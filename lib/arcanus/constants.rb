@@ -8,6 +8,6 @@ module Arcanus
   LOCKED_KEY_PATH = File.join('.arcanus', 'protected.key').freeze
   UNLOCKED_KEY_PATH = File.join('.arcanus', 'unprotected.key').freeze
 
-  REPO_URL = 'https://github.com/sds/arcanus'.freeze
+  REPO_URL = 'https://github.com/brigade/arcanus'.freeze
   BUG_REPORT_URL = "#{REPO_URL}/issues".freeze
 end
