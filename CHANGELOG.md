@@ -1,5 +1,9 @@
 # Arcanus Changelog
 
+## 1.1.1
+
+* Remove subprocess require (bugfix)
+
 ## 1.1.0
 
 * Remove unused `childprocess` dependency
