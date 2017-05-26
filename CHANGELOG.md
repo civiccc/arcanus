@@ -1,5 +1,9 @@
 # Arcanus Changelog
 
+## 1.1.2
+
+* Update `tty` dependency to v0.2
+
 ## 1.1.1
 
 * Remove subprocess require (bugfix)
