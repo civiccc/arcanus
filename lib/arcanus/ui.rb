@@ -6,7 +6,7 @@ module Arcanus
   class UI
     extend Forwardable
 
-    def_delegators :@shell, :ask, :confirm
+    def_delegators :@prompt, :ask, :confirm
 
     # Creates a {UI} that mediates between the given input/output streams.
     #
@@ -16,7 +16,7 @@ module Arcanus
       @input = input
       @output = output
       @pastel = Pastel.new(enabled: output.tty?)
-      @shell = TTY::Shell.new
+      @prompt = TTY::Prompt.new
     end
 
     # Get user input, stripping extraneous whitespace.

@@ -1,5 +1,9 @@
 # Arcanus Changelog
 
+## master (unreleased)
+
+  Update `tty` dependency to v0.3+
+
 ## 1.1.2
 
 * Update `tty` dependency to v0.2

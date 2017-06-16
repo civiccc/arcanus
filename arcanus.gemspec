@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.summary          = 'Arcanus command line interface'
   s.description      = 'Tool for working with encrypted secrets in repositories'
   s.authors          = ['Brigade Engineering', 'Shane da Silva']
-  s.email            = ['eng@brigade.com', 'shane.dasilva@brigade.com']
+  s.email            = ['eng@brigade.com', 'shane@dasilva.io']
   s.homepage         = Arcanus::REPO_URL
 
   s.require_paths    = ['lib']
@@ -21,5 +21,5 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 2.1'
 
   s.add_dependency 'diffy', '~> 3.1'
-  s.add_dependency 'tty', '~> 0.2'
+  s.add_dependency 'tty', '~> 0.3'
 end
