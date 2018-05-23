@@ -21,5 +21,8 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 2.1'
 
   s.add_dependency 'diffy', '~> 3.1'
-  s.add_dependency 'tty', '~> 0.3'
+  s.add_dependency 'pastel', '~> 0.7'
+  s.add_dependency 'tty-prompt', '~> 0.16'
+  s.add_dependency 'tty-spinner', '~> 0.8'
+  s.add_dependency 'tty-table', '~> 0.10'
 end
