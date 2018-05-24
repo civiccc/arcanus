@@ -59,11 +59,7 @@ module Arcanus::Command
         rescue => ex
           ui.error "Error occurred while modifying the chest: #{ex.message}"
 
-          unless ui.ask('Do you want to try editing the same file again? (y/n)')
-                   .argument(:required)
-                   .default('y')
-                   .modify('downcase')
-                   .read_string == 'y'
+          unless ui.yes?('Do you want to try editing the same file again?')
             break
           end
         end

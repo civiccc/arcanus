@@ -9,7 +9,7 @@ module Arcanus
   class UI
     extend Forwardable
 
-    def_delegators :@prompt, :ask, :confirm
+    def_delegators :@prompt, :ask, :confirm, :yes?
 
     # Creates a {UI} that mediates between the given input/output streams.
     #
