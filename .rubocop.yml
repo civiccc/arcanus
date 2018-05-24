@@ -34,7 +34,7 @@ Style/Documentation:
     - 'lib/arcanus/command/**/*.rb'
     - 'spec/**/*'
 
-Style/DotPosition:
+Layout/DotPosition:
   EnforcedStyle: leading
 
 Style/Encoding:
@@ -87,7 +87,7 @@ Style/SingleLineBlockParams:
 Style/SpecialGlobalVars:
   Enabled: false
 
-Style/MultilineOperationIndentation:
+Layout/MultilineOperationIndentation:
   Enabled: false
 
 Style/NumericPredicate:
