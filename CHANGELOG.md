@@ -1,5 +1,9 @@
 # Arcanus Changelog
 
+## master (unreleased)
+
+* Split up `tty` dependencies (`tty` has a very restrictive gemspec)
+
 ## 1.2.0
 
   Update `tty` dependency to v0.3+

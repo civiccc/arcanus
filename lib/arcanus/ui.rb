@@ -1,5 +1,8 @@
 require 'forwardable'
-require 'tty'
+require 'pastel'
+require 'tty-prompt'
+require 'tty-spinner'
+require 'tty-table'
 
 module Arcanus
   # Manages all interaction with the user.
