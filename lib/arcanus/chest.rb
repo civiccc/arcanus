@@ -210,7 +210,7 @@ module Arcanus
               "expected #{signature} but got #{actual_signature}"
       end
 
-      Marshal.load(dumped_value)
+      Marshal.load(dumped_value) # rubocop:disable MarshalLoad
     end
 
     # Helper class for returning contents nested hashes, exposing helpers to

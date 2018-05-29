@@ -3,6 +3,9 @@
 ## master (unreleased)
 
 * Split up `tty` dependencies (`tty` has a very restrictive gemspec)
+* Delegate y/n question to tty-prompt
+* Update rubocop version to avoid CVE-2017-8418
+* Fix the rubocop config and ignore a couple cops
 
 ## 1.2.0
 

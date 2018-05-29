@@ -23,7 +23,7 @@ module Arcanus::Command
 
     def command_classes
       command_files =
-        Dir[File.join(File.dirname(__FILE__), '*.rb')]
+        Dir[File.join(File.dirname(__FILE__), '*.rb')] # rubocop:disable InverseMethods
         .select { |path| File.basename(path, '.rb') != 'base' }
 
       command_files.map do |file|
