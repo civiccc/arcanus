@@ -1,6 +1,6 @@
 # Arcanus Changelog
 
-## master (unreleased)
+## 1.3.0
 
 * Split up `tty` dependencies (`tty` has a very restrictive gemspec)
 * Delegate y/n question to tty-prompt
