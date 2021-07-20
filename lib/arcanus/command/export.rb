@@ -9,9 +9,13 @@ module Arcanus::Command
                 'consumption by other programs'
 
     def execute
-      ensure_key_unlocked
+      if ENV.key?('ARCANUS_PASSWORD')
+        key = Arcanus::Key.from_protected_file(repo.locked_key_path, ENV['ARCANUS_PASSWORD'])
+      else
+        ensure_key_unlocked
+        key = Arcanus::Key.from_file(repo.unlocked_key_path)
+      end
 
-      key = Arcanus::Key.from_file(repo.unlocked_key_path)
       chest = Arcanus::Chest.new(key: key, chest_file_path: repo.chest_file_path)
 
       env_vars = extract_env_vars(chest.to_hash)
